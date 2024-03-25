@@ -16,6 +16,8 @@ class Group<T> extends Equatable {
     this.actorCount,
     this.createdAt,
     this.updatedAt,
+    this.verb,
+    this.activityCount,
   });
 
   /// Create a new instance from a json
@@ -37,11 +39,14 @@ class Group<T> extends Equatable {
   /// A number of actors in the group.
   final int? actorCount;
 
+  final String? verb;
+
   /// A created date.
   final DateTime? createdAt;
 
   /// An updated date.
   final DateTime? updatedAt;
+  final int? activityCount;
 
   @override
   List<Object?> get props => [
@@ -51,6 +56,8 @@ class Group<T> extends Equatable {
         actorCount,
         createdAt,
         updatedAt,
+        verb,
+        activityCount,
       ];
 
   /// Serialize to json
@@ -66,8 +73,10 @@ class NotificationGroup<T> extends Group<T> {
   const NotificationGroup({
     String? id,
     String? group,
+    String? verb,
     List<T>? activities,
     int? actorCount,
+    int? activityCount,
     DateTime? createdAt,
     DateTime? updatedAt,
     this.isRead,
@@ -75,10 +84,12 @@ class NotificationGroup<T> extends Group<T> {
   }) : super(
           id: id,
           group: group,
+          verb: verb,
           activities: activities,
           actorCount: actorCount,
           createdAt: createdAt,
           updatedAt: updatedAt,
+          activityCount: activityCount,
         );
 
   /// Create a new instance from a json
