@@ -67,7 +67,7 @@ class AggregatedFeed extends Feed {
   /// Retrieve activities with reaction enrichment
   ///
   /// {@macro filter}
-  Future<List<Group<GenericEnrichedActivity<A, Ob, T, Or>>>>
+  Future<(List<Group<GenericEnrichedActivity<A, Ob, T, Or>>>, String)>
       getEnrichedActivities<A, Ob, T, Or>({
     int? limit,
     int? offset,
@@ -94,7 +94,7 @@ class AggregatedFeed extends Feed {
               ),
             ))
         .toList(growable: false);
-    return data;
+    return (data, result.data['next'] as String);
   }
 
   /// Retrieves one enriched activity from a feed
@@ -105,7 +105,7 @@ class AggregatedFeed extends Feed {
         filter: Filter()
             .idLessThanOrEqual(activityId)
             .idGreaterThanOrEqual(activityId));
-    return activities.first;
+    return activities.$1.first;
   }
 
   Future<PaginatedActivitiesGroup<A, Ob, T, Or>>

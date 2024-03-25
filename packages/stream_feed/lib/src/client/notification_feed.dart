@@ -119,8 +119,11 @@ class NotificationFeed extends AggregatedFeed {
   ///
   /// {@macro filter}
   @override
-  Future<List<NotificationGroup<GenericEnrichedActivity<A, Ob, T, Or>>>>
-      getEnrichedActivities<A, Ob, T, Or>({
+  Future<
+      (
+        List<NotificationGroup<GenericEnrichedActivity<A, Ob, T, Or>>>,
+        String
+      )> getEnrichedActivities<A, Ob, T, Or>({
     int? limit,
     int? offset,
     String? session,
@@ -146,6 +149,6 @@ class NotificationFeed extends AggregatedFeed {
               ),
             ))
         .toList(growable: false);
-    return data;
+    return (data, result.data['next'] as String);
   }
 }
