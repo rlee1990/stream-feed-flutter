@@ -62,7 +62,9 @@ Map<String, dynamic> _$GenericEnrichedActivityToJson<A, Ob, T, Or>(
   Object? Function(T value) toJsonT,
   Object? Function(Or value) toJsonOr,
 ) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'id': readonly(instance.id),
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -70,7 +72,6 @@ Map<String, dynamic> _$GenericEnrichedActivityToJson<A, Ob, T, Or>(
     }
   }
 
-  writeNotNull('id', readonly(instance.id));
   writeNotNull('actor', _$nullableGenericToJson(instance.actor, toJsonA));
   val['verb'] = instance.verb;
   writeNotNull('object', _$nullableGenericToJson(instance.object, toJsonOb));
@@ -78,13 +79,13 @@ Map<String, dynamic> _$GenericEnrichedActivityToJson<A, Ob, T, Or>(
   writeNotNull('target', _$nullableGenericToJson(instance.target, toJsonT));
   writeNotNull('time', const DateTimeUTCConverter().toJson(instance.time));
   writeNotNull('origin', _$nullableGenericToJson(instance.origin, toJsonOr));
-  writeNotNull('to', readonly(instance.to));
-  writeNotNull('score', readonly(instance.score));
-  writeNotNull('analytics', readonly(instance.analytics));
-  writeNotNull('extra_context', readonly(instance.extraContext));
-  writeNotNull('reaction_counts', readonly(instance.reactionCounts));
-  writeNotNull('own_reactions', readonly(instance.ownReactions));
-  writeNotNull('latest_reactions', readonly(instance.latestReactions));
+  val['to'] = readonly(instance.to);
+  val['score'] = readonly(instance.score);
+  val['analytics'] = readonly(instance.analytics);
+  val['extra_context'] = readonly(instance.extraContext);
+  val['reaction_counts'] = readonly(instance.reactionCounts);
+  val['own_reactions'] = readonly(instance.ownReactions);
+  val['latest_reactions'] = readonly(instance.latestReactions);
   writeNotNull('extra_data', instance.extraData);
   return val;
 }

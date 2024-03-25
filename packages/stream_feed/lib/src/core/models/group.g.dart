@@ -20,6 +20,8 @@ Group<T> _$GroupFromJson<T>(
           const DateTimeUTCConverter().fromJson(json['created_at'] as String?),
       updatedAt:
           const DateTimeUTCConverter().fromJson(json['updated_at'] as String?),
+      verb: json['verb'] as String?,
+      activityCount: json['activity_count'] as int?,
     );
 
 Map<String, dynamic> _$GroupToJson<T>(
@@ -31,8 +33,10 @@ Map<String, dynamic> _$GroupToJson<T>(
       'group': instance.group,
       'activities': instance.activities?.map(toJsonT).toList(),
       'actor_count': instance.actorCount,
+      'verb': instance.verb,
       'created_at': const DateTimeUTCConverter().toJson(instance.createdAt),
       'updated_at': const DateTimeUTCConverter().toJson(instance.updatedAt),
+      'activity_count': instance.activityCount,
     };
 
 NotificationGroup<T> _$NotificationGroupFromJson<T>(
@@ -42,9 +46,11 @@ NotificationGroup<T> _$NotificationGroupFromJson<T>(
     NotificationGroup<T>(
       id: json['id'] as String?,
       group: json['group'] as String?,
+      verb: json['verb'] as String?,
       activities:
           (json['activities'] as List<dynamic>?)?.map(fromJsonT).toList(),
       actorCount: json['actor_count'] as int?,
+      activityCount: json['activity_count'] as int?,
       createdAt:
           const DateTimeUTCConverter().fromJson(json['created_at'] as String?),
       updatedAt:
@@ -62,8 +68,10 @@ Map<String, dynamic> _$NotificationGroupToJson<T>(
       'group': instance.group,
       'activities': instance.activities?.map(toJsonT).toList(),
       'actor_count': instance.actorCount,
+      'verb': instance.verb,
       'created_at': const DateTimeUTCConverter().toJson(instance.createdAt),
       'updated_at': const DateTimeUTCConverter().toJson(instance.updatedAt),
+      'activity_count': instance.activityCount,
       'is_read': instance.isRead,
       'is_seen': instance.isSeen,
     };
